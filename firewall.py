@@ -92,3 +92,24 @@ def is_active() -> bool:
         return MARKER_START in _read_hosts()
     except Exception:
         return False
+
+def fix_hosts() -> tuple[bool, str]:
+    content = _read_hosts()
+    lines = content.splitlines()
+    new_lines = []
+    inside = False
+    for line in lines:
+        if "======= SteamGuard START" in line or "======= SteamVeil START" in line:
+            inside = True
+            continue
+        if "======= SteamGuard END" in line or "======= SteamVeil END" in line:
+            inside = False
+            continue
+        if not inside:
+            new_lines.append(line)
+
+    new_content = "\n".join(new_lines).rstrip() + "\n"
+    ok, err = _write_hosts(new_content)
+    if ok:
+        _flush_dns()
+    return ok, err

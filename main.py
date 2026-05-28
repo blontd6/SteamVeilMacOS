@@ -104,6 +104,11 @@ def run(stdscr):
         put(r, len(btn_launch) + 2, "press L or 3", YELLOW)
         r += 2
 
+        btn_fix = "FIX HOSTS"
+        put(r, 0, btn_fix, BTN_REL)
+        put(r, len(btn_fix) + 2, "press 4", YELLOW)
+        r += 2
+
         if isolated:
             put(r, 0, "BLOCKING", BOLD)
             r += 1
@@ -117,7 +122,7 @@ def run(stdscr):
                 r += 1
             r += 1
 
-        keys = "SPACE/1 toggle   X/2 force quit   L/3 launch steam   R refresh   Q quit"
+        keys = "SPACE/1 toggle   X/2 force quit   L/3 launch steam   4 fix hosts   R refresh   Q quit"
         put(h - 1, 0, keys, YELLOW)
 
         stdscr.refresh()
@@ -132,6 +137,9 @@ def run(stdscr):
             refresh()
         elif key in (ord("l"), ord("L"), ord("3")):
             steam_detect.launch_steam()
+            refresh()
+        elif key == ord("4"):
+            firewall.fix_hosts()
             refresh()
         elif key in (ord("r"), ord("R")):
             refresh()
