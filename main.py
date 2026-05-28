@@ -63,7 +63,7 @@ def run(stdscr):
         r = 1
 
         put(r, 0, "SteamVeil", CYAN | BOLD)
-        put(r, 11, "steam network isolation", WHITE)
+        put(r, 11, "steam network isolation - by blon", WHITE)
         r += 2
 
         put(r, 0, "STATUS", BOLD)
@@ -79,10 +79,10 @@ def run(stdscr):
 
         if isolated:
             put(r, 0, "●", GREEN)
-            put(r, 2, "Network ISOLATED - Steam cannot reach the internet", WHITE)
+            put(r, 2, "Network ISOLATED Steam cannot reach the internet", WHITE)
         else:
             put(r, 0, "○", RED)
-            put(r, 2, "Network normal - Steam has full internet access", WHITE)
+            put(r, 2, "Network normal Steam has full internet access", WHITE)
         r += 2
 
         if isolated:
