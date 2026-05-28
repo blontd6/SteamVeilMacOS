@@ -29,6 +29,7 @@ def run(stdscr):
     isolated = False
     steam_running = False
     steam_pid = None
+    last_action_msg = ""
 
     def refresh():
         nonlocal isolated, steam_running, steam_pid
@@ -38,10 +39,13 @@ def run(stdscr):
         isolated = firewall.is_active()
 
     def toggle():
+        nonlocal last_action_msg
         if isolated:
-            firewall.disable()
+            ok, err = firewall.disable()
+            last_action_msg = "Released Steam network" if ok else f"Error: {err}"
         else:
-            firewall.enable()
+            ok, err = firewall.enable()
+            last_action_msg = "Isolated Steam network" if ok else f"Error: {err}"
         refresh()
 
     refresh()
@@ -123,6 +127,8 @@ def run(stdscr):
             r += 1
 
         keys = "SPACE/1 toggle   X/2 force quit   L/3 launch steam   4 fix hosts   R refresh   Q quit"
+        if last_action_msg:
+            put(h - 3, 0, f"> {last_action_msg}", CYAN)
         put(h - 1, 0, keys, YELLOW)
 
         stdscr.refresh()
@@ -134,14 +140,18 @@ def run(stdscr):
             toggle()
         elif key in (ord("x"), ord("X"), ord("2")):
             steam_detect.kill_steam()
+            last_action_msg = "Force quit Steam"
             refresh()
         elif key in (ord("l"), ord("L"), ord("3")):
             steam_detect.launch_steam()
+            last_action_msg = "Launched Steam"
             refresh()
         elif key == ord("4"):
-            firewall.fix_hosts()
+            ok, err = firewall.fix_hosts()
+            last_action_msg = "Fixed hosts file and flushed DNS" if ok else f"Fix hosts error: {err}"
             refresh()
         elif key in (ord("r"), ord("R")):
+            last_action_msg = "Refreshed status"
             refresh()
         elif key == curses.KEY_RESIZE:
             pass
