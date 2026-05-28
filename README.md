@@ -31,5 +31,5 @@ Inside the app, you can use these keys:
 
 
 ---------
-
+Please star this repo ⭐
 
