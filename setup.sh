@@ -15,7 +15,7 @@ echo "${BOLD}${CYAN}SteamVeil Setup${RESET}"
 echo ""
 
 #check for python
-echo "${BOLD}[1/4] Checking Python…${RESET}"
+echo "${BOLD}[1/3] Checking Python…${RESET}"
 if ! command -v python3 &>/dev/null; then
     echo "${RED}[FAILED] python3 not found. Install it from https://python.org${RESET}"
     exit 1
@@ -71,8 +71,9 @@ echo "${BOLD}python3 ${SCRIPT_DIR}/main.py${RESET}"
 echo ""
 echo "${BOLD}How to use:${RESET}"
 echo "Press SPACE or '1' to ISOLATE Steam and restrict its internet access"
-echo "Then press 'x' or '2' to heavy quit steam"
-echo "Lastly open your game and play even when someone else in your steam family is playing!"
+echo "Press 'x' or '2' to force quit Steam"
+echo "Press 'g' or '5' to launch your game directly from your Steam common library"
+echo "Play even when someone else in your Steam family is playing!"
 
 
 echo ""
