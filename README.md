@@ -4,9 +4,15 @@ A simple terminal app that isolates Steam from the network so multiple family me
 
 ## Setup
 ### Cloning the repo...
-```git clone https://github.com/blontd6/SteamVeilMacOS.git```
+```bash
+git clone https://github.com/blontd6/SteamVeilMacOS.git
+```
+
 then
-```cd SteamVeilMacOS```
+
+```bash
+cd SteamVeilMacOS
+```
 then proceed 
 ↓↓↓
 Run this **once** to configure permissions:
