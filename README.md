@@ -14,7 +14,9 @@ then
 cd SteamVeilMacOS
 ```
 then proceed 
+
 ↓↓↓
+
 Run this **once** to configure permissions:
 ```bash
 sh setup.sh
